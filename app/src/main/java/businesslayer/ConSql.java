@@ -1,4 +1,4 @@
-package com.example.libraryproject;
+package businesslayer;
 
 import android.annotation.SuppressLint;
 import android.os.StrictMode;
@@ -11,7 +11,7 @@ public class ConSql {
     Connection con;
     @SuppressLint("NewApi")
     public Connection conClass(){
-        String ip="192.168.127.15",port="1433",db="librarymanagement",username="sa",password="changeme";
+        String ip="192.168.211.36",port="1433",db="librarymanagement",username="sa",password="a1236700";
         StrictMode.ThreadPolicy a =new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(a);
         String ConnectURL=null;
