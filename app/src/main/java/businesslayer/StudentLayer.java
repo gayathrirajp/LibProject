@@ -45,4 +45,23 @@ public class StudentLayer {
 
         return null;
     }
+
+    public static ResultSet getBooksOfBranch(String branchId){
+        String fetchBooksByBranch= "exec FetchBooksByBranch ?";
+        ConSql c= new ConSql();
+        Connection con=c.conClass();
+        try{
+            PreparedStatement ps= con.prepareStatement(fetchBooksByBranch);
+            ps.setEscapeProcessing(true);
+            ps.setQueryTimeout(100);
+            ps.setString(1, branchId);
+            ResultSet rs= ps.executeQuery();
+            return rs;
+        }
+        catch(Exception e){
+            Log.e("Error: ", e.getMessage());
+        }
+
+        return null;
+    }
 }
