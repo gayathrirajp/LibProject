@@ -1,4 +1,4 @@
-package com.example.libraryproject;
+package businesslayer;
 
 import android.annotation.SuppressLint;
 import android.os.StrictMode;
@@ -26,4 +26,5 @@ public class ConSql {
         return con;
 
     }
+
 }
