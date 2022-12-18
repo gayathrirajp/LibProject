@@ -27,7 +27,7 @@ import businesslayer.StudentLayer;
 public class StudentProfileActivity extends AppCompatActivity {
 
     TextView txtName, txtUsn, txtBatch, txtBranch, txtPhone;
-    Button bFind, bHistory;
+    Button bFind, bHistory, btnChangePassword;
     String StudentUsn;
     ImageView iv;
     @Override
@@ -53,6 +53,7 @@ public class StudentProfileActivity extends AppCompatActivity {
         //TENTATIVE: Referencing Buttons
         bFind=findViewById(R.id.btnFindBook);
         bHistory=findViewById(R.id.btnHistory);
+        btnChangePassword=findViewById(R.id.btnChangePassword);
 
         //Fetching Details of student and setting them on the CardView
         getStudentDetails();
@@ -72,6 +73,15 @@ public class StudentProfileActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i=new Intent(StudentProfileActivity.this, FindBookActivity.class);
                 startActivity(i);
+            }
+        });
+
+        btnChangePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent k= new Intent(StudentProfileActivity.this, ChangePasswordActivity.class);
+                k.putExtra("usn", StudentUsn);
+                startActivity(k);
             }
         });
     }
