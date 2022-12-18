@@ -56,10 +56,10 @@ public class HistoryActivity extends AppCompatActivity {
         if(s!=null){
             try{
                 while(s.next()){
-                    bookName.add(s.getString(2));
-                    issuedOn.add(s.getString(4));
-                    returnedOn.add(s.getString(7));
-                    dueDate.add(s.getString(5));
+                    bookName.add("Title: "+s.getString(2));
+                    issuedOn.add("Issued on: "+s.getString(4));
+                    returnedOn.add("Returned on: "+s.getString(7));
+                    dueDate.add("Due date: "+s.getString(5));
                 }
 
             }
@@ -70,25 +70,3 @@ public class HistoryActivity extends AppCompatActivity {
         }
     }
 }
-
-
-
-
-/* while(s.next()){
-                    Log.i("someTag:  ", s.getString(2));
-                    TableRow tr= new TableRow(this);
-                    TextView bId=new TextView(this);TextView bName=new TextView(this);
-                    TextView isBy=new TextView(this); TextView isOn=new TextView(this);
-                    *//*TextView due=new TextView(this);TextView retTo=new TextView(this);
-                    TextView retOn=new TextView(this);*//*
-                    bId.setText(s.getString(1)); bName.setText(k);
-                    isBy.setText(s.getString(3)); isOn.setText(s.getString(4));
-                    *//*due.setText(s.getString(5)); retTo.setText(s.getString(6));
-                    retOn.setText(s.getString(7));*//*
-                    tr.addView(bId); tr.addView(bName);
-                    tr.addView(isBy); tr.addView(isOn);
-                    *//*tr.addView(due); tr.addView(retTo);
-                    tr.addView(retOn);*//*
-                    tbl.addView(tr);
-                    k="Thermodynamics";
-                }*/

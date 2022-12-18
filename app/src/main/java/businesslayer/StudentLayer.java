@@ -65,4 +65,26 @@ public class StudentLayer {
         return null;
     }
 
+    public static ResultSet changePassword(String usn, String oldPassword, String newPassword){
+
+        String changePasswd= "exec StudentChangePassword ?, ?, ?";
+        ConSql c= new ConSql();
+        Connection con= c.conClass();
+        try{
+            PreparedStatement ps= con.prepareStatement(changePasswd);
+            ps.setEscapeProcessing(true);
+            ps.setQueryTimeout(100);
+            ps.setString(1, oldPassword);
+            ps.setString(2, newPassword);
+            ps.setString(3, usn);
+            ResultSet rs= ps.executeQuery();
+            return rs;
+
+        }catch(Exception e){
+            Log.e("Error", e.getMessage());
+        }
+
+        return null;
+    }
+
 }

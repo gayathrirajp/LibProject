@@ -75,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
             try{
                 set.next();
                 StaffId=set.getString(1);
-                StudentId=userName;
+                StudentId=set.getString(2);
                 if(flag=="Student" && !StudentId.equals("-1")){
                     Intent i= new Intent(LoginActivity.this,StudentProfileActivity.class);
                     i.putExtra("key", StudentId);
