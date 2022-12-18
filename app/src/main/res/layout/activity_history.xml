@@ -6,7 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".HistoryActivity">
 
-    <TableLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recyclerHistory"/>
+    <!--<TableLayout
         android:id="@+id/tblHistory"
         android:layout_width="393dp"
         android:layout_height="176dp"
@@ -44,7 +48,7 @@
                 android:layout_height="match_parent"
                 android:text="Issued On"
                 android:layout_gravity="left"/>
-            <!--<TextView
+            &lt;!&ndash;<TextView
                 android:id="@+id/txtDueDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -58,8 +62,8 @@
                 android:id="@+id/txtReturnedOn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Returned On" />-->
+                android:text="Returned On" />&ndash;&gt;
 
         </TableRow>
-    </TableLayout>
+    </TableLayout>-->
 </androidx.constraintlayout.widget.ConstraintLayout>

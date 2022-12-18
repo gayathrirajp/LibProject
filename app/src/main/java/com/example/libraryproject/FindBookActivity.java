@@ -1,8 +1,9 @@
 package com.example.libraryproject;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,23 +18,25 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 
+import businesslayer.FindBookAdapter;
 import businesslayer.StudentLayer;
 
 public class FindBookActivity extends AppCompatActivity {
 
     ListView listBranches;
     ArrayAdapter<String> adp;
-    ArrayList<String> arr;
-    TableLayout tbl;
+    ArrayList<String> arr, bookName, author, copiesAvailable;
+    //TableLayout tbl;
+    FindBookAdapter adapter;
+    RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_book);
 
         listBranches=findViewById(R.id.listBranches);
-        tbl= findViewById(R.id.tblBooks);
+        //tbl= findViewById(R.id.tblBooks);
 
         String str="AIML CSE ISE EC EEE MECH BT MCA";
         arr= new ArrayList<String>(Arrays.asList(str.split(" ")));
@@ -44,12 +47,35 @@ public class FindBookActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String info= ((TextView)view).getText().toString();
-                TextView txt= findViewById(R.id.txtView);
-                txt.setText(info);
-                getBooks(info);
+                /*TextView txt= findViewById(R.id.txtView);
+                txt.setText(info);*/
+                //getBooks(info);
+                bookName= new ArrayList<String>();
+                author= new ArrayList<String>();
+                copiesAvailable= new ArrayList<String>();
+                recyclerView= findViewById(R.id.recyclerView);
+                adapter = new FindBookAdapter(FindBookActivity.this, bookName , author, copiesAvailable);
+                recyclerView.setAdapter(adapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(FindBookActivity.this));
+                displayData(info);
+
             }
         });
+    }
 
+    void displayData(String info){
+        ResultSet rSet=StudentLayer.getBooksOfBranch(info);
+        if(rSet!= null){
+            try{
+                while(rSet.next()){
+                    bookName.add("Title: "+rSet.getString(1));
+                    author.add("Author: "+rSet.getString(2));
+                    copiesAvailable.add("Copies Available: "+rSet.getString(3));
+                }
+            }catch (Exception e){
+                Log.e("Error", e.getMessage());
+            }
+        }
     }
 
     void getBooks(String branchId){
@@ -72,7 +98,7 @@ public class FindBookActivity extends AppCompatActivity {
                     tr.addView(copiesAvailable);
                     /*tr.addView(due); tr.addView(retTo);
                     tr.addView(retOn);*/
-                    tbl.addView(tr);
+                    //tbl.addView(tr);
                 }
 
             } catch (SQLException e) {

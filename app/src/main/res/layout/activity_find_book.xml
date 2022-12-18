@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,25 +8,17 @@
 
     <ListView
         android:id="@+id/listBranches"
-        android:layout_width="399dp"
-        android:layout_height="273dp"
+        android:layout_width="408dp"
+        android:layout_height="170dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.117" />
+        app:layout_constraintVertical_bias="0.049" />
 
-    <TextView
-        android:id="@+id/txtView"
-        android:layout_width="187dp"
-        android:layout_height="68dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.549" />
 
-    <TableLayout
+   <!-- <TableLayout
         android:id="@+id/tblBooks"
         android:layout_width="393dp"
         android:layout_height="176dp"
@@ -35,7 +27,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.882">
+        app:layout_constraintVertical_bias="0.481"
+        android:layout_below="@+id/listBranches">
 
         <TableRow
             android:layout_width="match_parent"
@@ -65,7 +58,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="left"
                 android:text="Issued On" />
-            <!--<TextView
+            &lt;!&ndash;<TextView
                 android:id="@+id/txtDueDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -79,8 +72,23 @@
                 android:id="@+id/txtReturnedOn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Returned On" />-->
+                android:text="Returned On" />&ndash;&gt;
 
         </TableRow>
-    </TableLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </TableLayout>-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/listBranches"
+        tools:context=".FindBookActivity">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="55dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
