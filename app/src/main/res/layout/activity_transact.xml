@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        app:cardBackgroundColor="@color/material_on_surface_emphasis_medium"
+        app:cardBackgroundColor="@color/cardview_light_background"
         app:cardCornerRadius="20dp"
 
         app:cardElevation="20dp"
@@ -20,10 +20,10 @@
         app:cardUseCompatPadding="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.157"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.249">
+        app:layout_constraintVertical_bias="0.256">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -70,12 +70,12 @@
         android:id="@+id/bIssue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="122dp"
-        android:layout_marginBottom="168dp"
+        android:layout_marginTop="99dp"
+        android:layout_marginBottom="188dp"
         android:text="Issue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.258"
+        app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
@@ -83,14 +83,14 @@
         android:id="@+id/bCollect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="122dp"
-        android:layout_marginEnd="56dp"
-        android:layout_marginBottom="168dp"
-        android:text="COLLECT"
+        android:layout_marginTop="99dp"
+        android:layout_marginBottom="188dp"
+        android:text="Collect"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/bIssue"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+        app:layout_constraintHorizontal_bias="0.721"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

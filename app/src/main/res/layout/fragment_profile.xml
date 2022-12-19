@@ -1,14 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="#F6F5F5"
     tools:context=".ProfileFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="350dp">
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="300dp"
+        android:orientation="vertical"
+        android:background="#FFBB86FC">
+        <androidx.cardview.widget.CardView
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="35dp"
+            android:foregroundGravity="center_horizontal"
+            app:cardCornerRadius="100dp">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/profile"></ImageView>
 
-</FrameLayout>
+        </androidx.cardview.widget.CardView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+           android:id="@+id/p_staffId"
+            android:textColor="#fff"
+            android:textSize="23dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"></TextView>
+
+
+    </LinearLayout>
+   <androidx.cardview.widget.CardView
+       android:layout_width="match_parent"
+       android:layout_height="80dp"
+       android:layout_alignParentBottom="true"
+       android:layout_marginLeft="20dp"
+       android:layout_marginRight="20dp"
+       android:layout_centerHorizontal="true"
+       app:cardCornerRadius="5dp">
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center"
+               android:gravity="center"
+              android:id="@+id/p_staffName"
+               android:textColor="#FFBB86FC"
+               android:textSize="29dp"
+               android:textStyle="bold">
+
+           </TextView>
+
+
+
+
+   </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="vertical"
+       android:gravity="center"
+       android:layout_marginTop="30dp">
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal"
+           android:layout_marginLeft="25dp">
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Phone: "
+               android:textSize="24dp"
+               android:textColor="#FFBB86FC"
+               style="italic"></TextView>
+
+           <TextView
+               android:id="@+id/p_staffPhone"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+
+               android:textSize="20dp"
+               android:textColor="@color/black"
+               style="bold"></TextView>
+
+
+       </LinearLayout>
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal"
+           android:layout_marginTop="20dp"
+           android:layout_marginLeft="25dp">
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="DOB   : "
+               android:textSize="24dp"
+               android:textColor="#FFBB86FC"
+               style="italic"></TextView>
+
+           <TextView
+               android:id="@+id/p_StaffDOB"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+
+               android:textSize="20dp"
+               android:textColor="@color/black"
+               style="bold"></TextView>
+
+
+       </LinearLayout>
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal"
+           android:layout_marginTop="20dp"
+           android:layout_marginLeft="25dp">
+
+
+           <TextView
+               android:layout_marginTop="10dp"
+
+               style="bold"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+
+               android:text="Change Password     "
+               android:textColor="#FFBB86FC"
+               android:textSize="24dp"></TextView>
+           <ImageButton
+               android:id="@+id/p_changePassword"
+               android:layout_width="50dp"
+               android:layout_height="50dp"
+               android:src="@drawable/ic_baseline_lock_reset_24" />
+
+
+       </LinearLayout>
+
+
+   </LinearLayout>
+
+    <EditText
+        android:id="@+id/p_staffpassword"
+        android:layout_width="250dp"
+        android:hint="Enter new password"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:inputType="textPassword"
+       />
+
+    <Button
+        android:id="@+id/p_submit"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:text="Confirm"
+        android:layout_gravity="center"
+       />
+
+
+</LinearLayout>

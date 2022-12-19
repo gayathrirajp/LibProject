@@ -1,7 +1,10 @@
 package businesslayer;
 
+import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
+
+import com.example.libraryproject.TransactActivity;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,6 +13,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class TransactLayer {
+    private static Context context;
+    public TransactLayer(Context context){
+        this.context=context;
+    }
    static ConSql c=new ConSql();
     static Connection connection=c.conClass();
     public static ResultSet studentInfo(String usn){
@@ -24,13 +31,14 @@ public class TransactLayer {
             Log.e("error",e.getMessage());
         }}
         else{
-           //put a toast;
+            Toast.makeText(context, "NOT CONNECTED TO NETWORK", Toast.LENGTH_SHORT).show();
+
         }
         return null;
     }
 
     public static ResultSet issueBook(String usn,String bookId,String staffId) throws SQLException {
-        if(c!=null){
+        if(connection!=null){
             String issueBook="exec spIssueBook ?, ? ,?";
             PreparedStatement ps=connection.prepareStatement(issueBook);
             ps.setEscapeProcessing(true);
@@ -49,6 +57,28 @@ public class TransactLayer {
             //toast
         }
 return null;
+    }
+
+    public static ResultSet collectBook(String usn,String bookId,String staffId) throws SQLException {
+        if(connection!=null){
+            String issueBook="exec spCollectBook ?, ? ,?";
+            PreparedStatement ps=connection.prepareStatement(issueBook);
+            ps.setEscapeProcessing(true);
+            ps.setQueryTimeout(100);
+            ps.setString(2,usn);
+            ps.setString(1,bookId);
+            ps.setString(3,staffId);
+            ResultSet rs=ps.executeQuery();
+            return rs;
+
+
+
+        }
+        else
+        {
+            //toast
+        }
+        return null;
     }
 
 }

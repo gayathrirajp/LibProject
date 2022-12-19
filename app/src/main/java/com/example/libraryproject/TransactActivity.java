@@ -30,7 +30,7 @@ public class TransactActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transact);
-
+        bCollect = findViewById(R.id.bCollect);
         name = findViewById(R.id.tName);
         usn = findViewById(R.id.tUsn);
         batch = findViewById(R.id.tbatch);
@@ -43,6 +43,13 @@ public class TransactActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent iBook=new Intent(TransactActivity.this,ScannerActivity.class);
                 startActivityForResult(iBook,3);
+            }
+        });
+        bCollect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent iCollect=new Intent(TransactActivity.this,ScannerActivity.class);
+                startActivityForResult(iCollect,4);
             }
         });
     }
@@ -81,8 +88,31 @@ public class TransactActivity extends AppCompatActivity {
                    Intent iIssue=new Intent(TransactActivity.this,LibraryActivity.class);
                    iIssue.putExtra("studentName",set.getString(2));
                    iIssue.putExtra("bookName",set.getString(3));
+            iIssue.putExtra("TAG","Issue");
                    startActivity(iIssue);
+
                    finish();
+
+
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        else  if(requestCode==4&&resultCode==2){
+            scanBookId=data.getStringExtra("variable");
+            try {
+            ResultSet set= TransactLayer.collectBook(scanUsn,scanBookId,"NM20LIB001");
+            set.next();
+
+ if(set!=null){
+                    //  Toast.makeText(TransactActivity.this, "heyy", Toast.LENGTH_SHORT).show();
+                    Intent icCollect2Library=new Intent(TransactActivity.this,LibraryActivity.class);
+     icCollect2Library.putExtra("studentName",set.getString(1));
+     icCollect2Library.putExtra("bookName",set.getString(2));
+     icCollect2Library.putExtra("TAG","Collect");
+                    startActivity(icCollect2Library);
+                    finish();
 
 
                 }

@@ -52,8 +52,8 @@ ActivityLibraryBinding binding;
 
 
         Intent iFromTransact =getIntent();
-        if(getIntent()!=null && getIntent().getStringExtra("studentName")!=null && getIntent().getStringExtra("studentName")!=null){
-
+        if(getIntent()!=null && iFromTransact.getStringExtra("TAG")!=null){
+if(iFromTransact.getStringExtra("TAG").equals("Issue")){
             String studentName =iFromTransact.getStringExtra("studentName");
             String bookName = iFromTransact.getStringExtra("bookName");
             Toast.makeText(this, bookName, Toast.LENGTH_SHORT).show();
@@ -71,6 +71,31 @@ ActivityLibraryBinding binding;
                 AlertDialog d=ad.create();
                 d.show();
             }
+          else  if(iFromTransact.getStringExtra("TAG").equals("Collect")){
+
+    String studentName =iFromTransact.getStringExtra("studentName");
+    String bookName = iFromTransact.getStringExtra("bookName");
+    Toast.makeText(this, bookName, Toast.LENGTH_SHORT).show();
+
+
+    AlertDialog.Builder ad = new AlertDialog.Builder(LibraryActivity.this);
+    ad.setTitle("Collected Successfully!");
+    ad.setMessage("Book" + bookName + " has been successfully returned by " + studentName);
+    ad.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialogInterface, int i) {
+            dialogInterface.cancel();
+        }
+    });
+    AlertDialog d=ad.create();
+    d.show();
+}
+
+
+
+
+        }
+
 
 }
     //method that will replace frame layout with fragments
