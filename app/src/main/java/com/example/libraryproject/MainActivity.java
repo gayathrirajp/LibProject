@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
                     replaceFragment(new HomeFragment());
                 }
                 else if (item.getItemId()==R.id.menuHistory){
-                    replaceFragment(new HistoryFragment());
+                    replaceFragment(new FaltuTimeWaste());
                 }
                 /*switch(item.getItemId()){
                     case R.id.menuHome:
