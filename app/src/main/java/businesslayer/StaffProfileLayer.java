@@ -23,7 +23,7 @@ public class StaffProfileLayer {
         }
         return null;
     }
-    public static int staffChangePassword(String staffId,String staffPassword) throws SQLException {
+    public static ResultSet staffChangePassword(String staffId,String staffPassword) throws SQLException {
         if(connection!=null){
             String issueBook="exec spStaffChangePassword ?,?";
             PreparedStatement ps=connection.prepareStatement(issueBook);
@@ -33,14 +33,14 @@ public class StaffProfileLayer {
             ps.setString(2,staffPassword);
 
 
-            ps.executeQuery();
-            return 1;
+ResultSet rs=            ps.executeQuery();
+            return rs;
 
 
         }
         else
         { //toast
         }
-        return 0;
+        return null;
     }
 }

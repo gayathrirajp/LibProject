@@ -37,9 +37,27 @@ public class TransactLayer {
         return null;
     }
 
-    public static ResultSet issueBook(String usn,String bookId,String staffId) throws SQLException {
+    public static ResultSet issueBookDetails(String usn,String bookId) throws SQLException {
         if(connection!=null){
-            String issueBook="exec spIssueBook ?, ? ,?";
+            String issueBook="exec spIssueBookDetails ?, ?";
+            PreparedStatement ps=connection.prepareStatement(issueBook);
+            ps.setEscapeProcessing(true);
+            ps.setQueryTimeout(100);
+            ps.setString(1,usn);
+            ps.setString(2,bookId);
+            ResultSet rs=ps.executeQuery();
+            return rs;
+
+        }
+        else
+        {
+            //toast
+        }
+        return null;
+    }
+    public static ResultSet issueBookConfirm(String usn,String bookId,String staffId) throws SQLException {
+        if(connection!=null){
+            String issueBook="exec spIssueBookConfirm ?, ?,?";
             PreparedStatement ps=connection.prepareStatement(issueBook);
             ps.setEscapeProcessing(true);
             ps.setQueryTimeout(100);
@@ -49,19 +67,34 @@ public class TransactLayer {
             ResultSet rs=ps.executeQuery();
             return rs;
 
-
+        }
+        else
+        {
+            //toast
+        }
+        return null;
+    }
+    public static ResultSet collectBookDetails(String usn,String bookId) throws SQLException {
+        if(connection!=null){
+            String issueBook="exec spcollectBookDetails ?, ?";
+            PreparedStatement ps=connection.prepareStatement(issueBook);
+            ps.setEscapeProcessing(true);
+            ps.setQueryTimeout(100);
+            ps.setString(2,usn);
+            ps.setString(1,bookId);
+            ResultSet rs=ps.executeQuery();
+            return rs;
 
         }
         else
         {
             //toast
         }
-return null;
+        return null;
     }
-
-    public static ResultSet collectBook(String usn,String bookId,String staffId) throws SQLException {
+    public static ResultSet collectBookConfirm(String usn,String bookId,String staffId) throws SQLException {
         if(connection!=null){
-            String issueBook="exec spCollectBook ?, ? ,?";
+            String issueBook="exec spcollectBookConfirm ?, ?,?";
             PreparedStatement ps=connection.prepareStatement(issueBook);
             ps.setEscapeProcessing(true);
             ps.setQueryTimeout(100);
@@ -71,8 +104,6 @@ return null;
             ResultSet rs=ps.executeQuery();
             return rs;
 
-
-
         }
         else
         {
@@ -80,5 +111,7 @@ return null;
         }
         return null;
     }
+
+
 
 }

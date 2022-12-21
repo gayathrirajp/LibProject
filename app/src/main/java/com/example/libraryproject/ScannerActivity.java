@@ -33,12 +33,16 @@ String variable;
         if(intentResult!=null){
             if(intentResult.getContents()==null){
                 Toast.makeText(getBaseContext(), "Cancelled", Toast.LENGTH_SHORT).show();
-                //to access context from another context
+           //  to access context from another context
+           Intent iCancel=new Intent(ScannerActivity.this,LibraryActivity.class);
+           iCancel.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(iCancel);
+             
             }
             else{
                 variable=intentResult.getContents();
 
-                Intent iTransact=new Intent();
+                Intent iTransact=new Intent(ScannerActivity.this,TransactActivity.class);
                 iTransact.putExtra("variable",variable);
                 setResult(2,iTransact);
                 finish();
@@ -47,6 +51,10 @@ String variable;
         }
         else{
             super.onActivityResult(requestCode, resultCode, data);
+            /*
+            Intent iCancel=new Intent(ScannerActivity.this,LibraryActivity.class);
+            startActivity(iCancel);
+            finish();*/
         }
     }
 }

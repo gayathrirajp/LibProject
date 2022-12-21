@@ -18,6 +18,11 @@ import com.example.libraryproject.databinding.ActivityLibraryBinding;
 /*import com.example.libraryproject.databinding.ActivityMainBinding;*/
 import com.google.android.material.navigation.NavigationBarView;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import businesslayer.TransactLayer;
+
 public class LibraryActivity extends AppCompatActivity {
 
 ActivityLibraryBinding binding;
@@ -56,18 +61,34 @@ ActivityLibraryBinding binding;
 if(iFromTransact.getStringExtra("TAG").equals("Issue")){
             String studentName =iFromTransact.getStringExtra("studentName");
             String bookName = iFromTransact.getStringExtra("bookName");
-            Toast.makeText(this, bookName, Toast.LENGTH_SHORT).show();
+            String USN = iFromTransact.getStringExtra("USN");
+    String bookId = iFromTransact.getStringExtra("BookId");
 
 
                 AlertDialog.Builder ad = new AlertDialog.Builder(LibraryActivity.this);
-                ad.setTitle("Issue Successful");
-                ad.setMessage("Book" + bookName + " has been successfully issued to " + studentName);
-                ad.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.cancel();
-                    }
-                });
+                ad.setTitle("Confirm Issue?\n");
+                ad.setCancelable(false);
+                ad.setMessage("Book: " + bookName + "\nStudent: "+ studentName+"\nUSN: "+USN);
+              ad.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                  @Override
+                  public void onClick(DialogInterface dialogInterface, int i) {
+                      try {
+                          ResultSet set= TransactLayer.issueBookConfirm(USN,bookId,LoginActivity.StaffId);
+                      } catch (SQLException e) {
+                          e.printStackTrace();
+                      }
+                      dialogInterface.cancel();
+                      Toast.makeText(LibraryActivity.this, "Issue successful", Toast.LENGTH_SHORT).show();
+                  }
+              });
+              ad.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                  @Override
+                  public void onClick(DialogInterface dialogInterface, int i) {
+                      dialogInterface.cancel();
+                      Toast.makeText(LibraryActivity.this, "Book not issued", Toast.LENGTH_SHORT).show();
+                  }
+              });
+
                 AlertDialog d=ad.create();
                 d.show();
             }
@@ -75,18 +96,35 @@ if(iFromTransact.getStringExtra("TAG").equals("Issue")){
 
     String studentName =iFromTransact.getStringExtra("studentName");
     String bookName = iFromTransact.getStringExtra("bookName");
-    Toast.makeText(this, bookName, Toast.LENGTH_SHORT).show();
+    String USN = iFromTransact.getStringExtra("USN");
+    String bookId = iFromTransact.getStringExtra("BookId");
+
 
 
     AlertDialog.Builder ad = new AlertDialog.Builder(LibraryActivity.this);
-    ad.setTitle("Collected Successfully!");
-    ad.setMessage("Book" + bookName + " has been successfully returned by " + studentName);
-    ad.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+    ad.setTitle("Confirm return?\n");
+    ad.setCancelable(false);
+    ad.setMessage("Book: " + bookName + "\nStudent: " + studentName+"\nUSN: "+USN);
+    ad.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialogInterface, int i) {
+            try {
+                ResultSet set= TransactLayer.collectBookConfirm(USN,bookId,LoginActivity.StaffId);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            dialogInterface.cancel();
+            Toast.makeText(LibraryActivity.this, "Collected Successfully", Toast.LENGTH_SHORT).show();
+        }
+    });
+    ad.setNegativeButton("NO", new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialogInterface, int i) {
             dialogInterface.cancel();
+            Toast.makeText(LibraryActivity.this, "Book not Collected", Toast.LENGTH_SHORT).show();
         }
     });
+
     AlertDialog d=ad.create();
     d.show();
 }

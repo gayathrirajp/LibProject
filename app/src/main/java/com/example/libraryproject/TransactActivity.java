@@ -77,21 +77,27 @@ public class TransactActivity extends AppCompatActivity {
       else  if(requestCode==3&&resultCode==2){
             scanBookId=data.getStringExtra("variable");
             try {
-                ResultSet set= TransactLayer.issueBook(scanUsn,scanBookId,"NM20LIB001");
+                ResultSet set= TransactLayer.issueBookDetails(scanUsn,scanBookId);
              set.next();
 
-                if(set.getString(1).equals("-1")){
-                    Toast.makeText(this, "Book already issued earlier", Toast.LENGTH_SHORT).show();
+                if(set.getString(1).equals("Already Issued")){
+                    Toast.makeText(this, "Book already issued", Toast.LENGTH_SHORT).show();
                 }
-                else if(set.getString(1).equals("SUCCESS")){
+                else if(set.getString(1).equals("not available")){
+                    Toast.makeText(this, "Book not available", Toast.LENGTH_SHORT).show();
+                }
+                else {
                   //  Toast.makeText(TransactActivity.this, "heyy", Toast.LENGTH_SHORT).show();
                    Intent iIssue=new Intent(TransactActivity.this,LibraryActivity.class);
                    iIssue.putExtra("studentName",set.getString(2));
-                   iIssue.putExtra("bookName",set.getString(3));
+                   iIssue.putExtra("bookName",set.getString(1));
+                    iIssue.putExtra("USN",scanUsn);
+                    iIssue.putExtra("BookId",scanBookId);
+
             iIssue.putExtra("TAG","Issue");
+                    iIssue.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                    startActivity(iIssue);
 
-                   finish();
 
 
                 }
@@ -102,23 +108,32 @@ public class TransactActivity extends AppCompatActivity {
         else  if(requestCode==4&&resultCode==2){
             scanBookId=data.getStringExtra("variable");
             try {
-            ResultSet set= TransactLayer.collectBook(scanUsn,scanBookId,"NM20LIB001");
-            set.next();
+            ResultSet set= TransactLayer.collectBookDetails(scanUsn,scanBookId);
+                /*set.next();*/
+                   if(!set.next()){
+                    Toast.makeText(this, "not issued", Toast.LENGTH_SHORT).show();
+                }
 
- if(set!=null){
+            else if(set!=null ){
+
                     //  Toast.makeText(TransactActivity.this, "heyy", Toast.LENGTH_SHORT).show();
                     Intent icCollect2Library=new Intent(TransactActivity.this,LibraryActivity.class);
      icCollect2Library.putExtra("studentName",set.getString(1));
      icCollect2Library.putExtra("bookName",set.getString(2));
+     icCollect2Library.putExtra("USN",scanUsn);
+     icCollect2Library.putExtra("BookId",scanBookId);
      icCollect2Library.putExtra("TAG","Collect");
                     startActivity(icCollect2Library);
                     finish();
-
-
                 }
-            } catch (SQLException e) {
+
+
+
+            }
+            catch (SQLException e) {
                 e.printStackTrace();
             }
+
         }
     }
 }

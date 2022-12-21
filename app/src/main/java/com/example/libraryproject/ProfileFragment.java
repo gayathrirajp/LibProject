@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -105,8 +106,9 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 try {
-                    int valresult=businesslayer.StaffProfileLayer.staffChangePassword("NM20LIB001", staffPass.getText().toString());
-                    if(valresult==0){
+                    ResultSet set=businesslayer.StaffProfileLayer.staffChangePassword("NM20LIB001", staffPass.getText().toString());
+                 set.next();
+                    if(set.getString(1).equals("SUCCESS")){
                         staffPass.setVisibility(view.GONE);
                         p_submit.setVisibility(view.INVISIBLE);
                         AlertDialog.Builder adProfile = new AlertDialog.Builder(getActivity());
