@@ -11,7 +11,7 @@ public class ConSql {
     Connection con;
     @SuppressLint("NewApi")
     public Connection conClass(){
-        String ip="192.168.127.15",port="1433",db="librarymanagement",username="sa",password="changeme";
+
         StrictMode.ThreadPolicy a =new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(a);
         String ConnectURL=null;
