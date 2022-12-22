@@ -4,6 +4,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +20,7 @@ import com.google.zxing.integration.android.IntentResult;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import businesslayer.TransactLayer;
 
@@ -25,7 +28,9 @@ public class TransactActivity extends AppCompatActivity {
     TextView name, usn, batch, branch;
     String scanUsn,  scanBookId;
     Button bCollect,bIssue;
-
+    ArrayList<String> bookName,issuedOn,issuedBy;
+    BookAdapter adapter;
+  
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +43,8 @@ public class TransactActivity extends AppCompatActivity {
         bIssue=findViewById(R.id.bIssue);
         Intent iStudent = new Intent(TransactActivity.this, ScannerActivity.class);
         startActivityForResult(iStudent,1);
+
+
         bIssue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,13 +60,36 @@ public class TransactActivity extends AppCompatActivity {
             }
         });
     }
-
+void getDataForStudentBooks() throws SQLException {
+   ResultSet set1 = TransactLayer.getStudentBookDetails(scanUsn);
+    while(set1.next()){
+        bookName.add(set1.getString(1));
+        issuedOn.add(set1.getString(2));
+        issuedBy.add(set1.getString(3));
+        Toast.makeText(this, set1.getString(1), Toast.LENGTH_SHORT).show();
+    }
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==1&&resultCode==2){
          scanUsn=data.getStringExtra("variable");
             ResultSet set= businesslayer.TransactLayer.studentInfo(scanUsn);
+            bookName=new ArrayList<String>();
+            issuedOn=new ArrayList<String>();
+            issuedBy=new ArrayList<String>();
+            RecyclerView recyclerViewBooks;
+            recyclerViewBooks=findViewById(R.id.recyclerView2);
+
+
+            adapter=new BookAdapter(this,bookName,issuedOn,issuedBy);
+            recyclerViewBooks.setAdapter(adapter);
+            recyclerViewBooks.setLayoutManager(new LinearLayoutManager(TransactActivity.this));
+            try {
+                getDataForStudentBooks();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
 
             try {
                 set.next();
@@ -71,6 +101,9 @@ public class TransactActivity extends AppCompatActivity {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+
+
+
 
 
         }

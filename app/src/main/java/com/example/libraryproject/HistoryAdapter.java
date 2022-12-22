@@ -11,11 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
+public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHolder> {
     private Context context;
     ArrayList usn,name,bookname,staffname;
 
-    public MyAdapter(Context context,ArrayList usn,ArrayList name,ArrayList bookname,ArrayList staffname) {
+    public HistoryAdapter(Context context, ArrayList usn, ArrayList name, ArrayList bookname, ArrayList staffname) {
         this.context = context;
         this.usn=usn;
         this.name=name;
@@ -32,10 +32,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull HistoryAdapter.MyViewHolder holder, int position) {
         //assigning values to the views we  created in the recycler view layout(history_entries)
         //based on the position of recycler view
-  holder.tv_USN.setText(String.valueOf(usn.get(position)));
+        holder.tv_USN.setText(String.valueOf(usn.get(position)));
         holder.tv_Name.setText(String.valueOf(name.get(position)));
         holder.tv_Book.setText(String.valueOf(bookname.get(position)));
         holder.tv_Staff.setText(String.valueOf(staffname.get(position)));
