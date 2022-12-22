@@ -111,7 +111,23 @@ public class TransactLayer {
         }
         return null;
     }
+    public static ResultSet getStudentBookDetails(String usn) throws SQLException {
+        if(connection!=null){
+            String issueBook="exec spgetStudentBookDetails ?";
+            PreparedStatement ps=connection.prepareStatement(issueBook);
+            ps.setEscapeProcessing(true);
+            ps.setQueryTimeout(100);
+            ps.setString(1,usn);
+            ResultSet rs=ps.executeQuery();
+            return rs;
 
+        }
+        else
+        {
+            //toast
+        }
+        return null;
+    }
 
 
 }

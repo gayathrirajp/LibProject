@@ -13,17 +13,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
-import android.widget.GridView;
-import android.widget.SimpleAdapter;
-import android.widget.Toast;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -95,13 +88,13 @@ public class HistoryFragment extends Fragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         RecyclerView recyclerView;
         ArrayList<String> usn,name,bookname,staffname;
-        MyAdapter adapter;
+        HistoryAdapter adapter;
         usn=new ArrayList<>();
         name=new ArrayList<>();
         bookname=new ArrayList<>();
         staffname=new ArrayList<>();
         recyclerView =getView().findViewById(R.id.recyclerView);
-        adapter=new MyAdapter(getActivity(),usn,name,bookname,staffname);
+        adapter=new HistoryAdapter(getActivity(),usn,name,bookname,staffname);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
