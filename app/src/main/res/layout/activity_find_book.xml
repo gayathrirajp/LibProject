@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FindBookActivity">
+
+
+    <!-- <TableLayout
+         android:id="@+id/tblBooks"
+         android:layout_width="393dp"
+         android:layout_height="176dp"
+         android:stretchColumns="1"
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent"
+         app:layout_constraintVertical_bias="0.481"
+         android:layout_below="@+id/listBranches">
+
+         <TableRow
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+
+             <TextView
+                 android:id="@+id/txtBookId"
+                 android:layout_width="68dp"
+                 android:layout_height="match_parent"
+                 android:text="Book Id" />
+
+             <TextView
+                 android:id="@+id/txtBookName"
+                 android:layout_width="113dp"
+                 android:layout_height="match_parent"
+                 android:text="Name" />
+
+             <TextView
+                 android:id="@+id/txtIssuedBy"
+                 android:layout_width="102dp"
+                 android:layout_height="wrap_content"
+                 android:text="Issued By" />
+
+             <TextView
+                 android:id="@+id/txtIssuedOn"
+                 android:layout_width="135dp"
+                 android:layout_height="match_parent"
+                 android:layout_gravity="left"
+                 android:text="Issued On" />
+             &lt;!&ndash;<TextView
+                 android:id="@+id/txtDueDate"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="Due Date" />
+             <TextView
+                 android:id="@+id/txtReturnedTo"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="Returned To" />
+             <TextView
+                 android:id="@+id/txtReturnedOn"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="Returned On" />&ndash;&gt;
+
+         </TableRow>
+     </TableLayout>-->
+
+    <TextView
+        android:id="@+id/txtBranchTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Choose Branch"
+        android:textSize="24dp"
+        android:layout_marginTop="20dp"/>
+
+    <ListView
+        android:id="@+id/listBranches"
+        android:layout_width="match_parent"
+        android:layout_height="196dp"
+        android:layout_below="@+id/txtBranchTitle"
+        android:layout_marginTop="41dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.049" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/listBranches"
+        tools:context=".FindBookActivity">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="122dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
