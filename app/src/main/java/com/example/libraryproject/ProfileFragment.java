@@ -1,13 +1,18 @@
 package com.example.libraryproject;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -24,7 +29,7 @@ import java.sql.SQLException;
  * create an instance of this fragment.
  */
 public class ProfileFragment extends Fragment {
-
+    int count=0;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -59,10 +64,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -94,13 +96,20 @@ public class ProfileFragment extends Fragment {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+
         ib.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                count++;
+                if(count%2==0){
+                    staffPass.setVisibility(view.INVISIBLE);
+                    p_submit.setVisibility(view.INVISIBLE);
+                }
+                else{
                 staffPass.setVisibility(view.VISIBLE);
                p_submit.setVisibility(view.VISIBLE);
-
-            }
+            }}
         });
         p_submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,5 +145,43 @@ public class ProfileFragment extends Fragment {
         return view;
 
 
+
+    }
+
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        //inflate menu
+        inflater.inflate(R.menu.library_logout,menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId()==R.id.libLogout){
+            AlertDialog.Builder ad=new AlertDialog.Builder(getActivity());
+            ad.setCancelable(false);
+            ad.setTitle("Alert!");
+            ad.setMessage("Do you want to log out?");
+          ad.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+              @Override
+              public void onClick(DialogInterface dialogInterface, int i) {
+               Intent iLogout=new Intent(getActivity(),LoginActivity.class);
+               startActivity(iLogout);
+               getActivity().finish();
+
+
+                  dialogInterface.cancel();
+              }
+          });
+          ad.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+              @Override
+              public void onClick(DialogInterface dialogInterface, int i) {
+                  dialogInterface.cancel();
+              }
+          });
+          AlertDialog a1=ad.create();
+          a1.show();
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

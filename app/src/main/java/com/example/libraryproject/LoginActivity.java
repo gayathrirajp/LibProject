@@ -64,6 +64,7 @@ public class LoginActivity extends AppCompatActivity {
                 authenticateLogin();
             }
         });
+
     }
 
     //Method to validate credentials of a user and redirect user to respective StartActivity
