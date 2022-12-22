@@ -39,27 +39,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".HistoryActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".FindBookActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".StudentProfileActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".LibraryActivity"
             android:exported="true">
 
@@ -82,7 +61,7 @@
         </activity>
 
         <activity
-        android:name=".MainActivity"
+        android:name=".StudentActivity"
         android:exported="true">
         <meta-data
             android:name="android.app.lib_name"
