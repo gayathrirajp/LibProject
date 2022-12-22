@@ -43,7 +43,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
                             s.next();
                             if (s.getString(1).equals("1")){
                                 Toast.makeText(ChangePasswordActivity.this, "Changed successfully", Toast.LENGTH_LONG).show();
-                                Intent m=new Intent(ChangePasswordActivity.this, StudentProfileActivity.class);
+                                Intent m=new Intent(ChangePasswordActivity.this, StudentActivity.class);
                                 startActivity(m);
                             }
                             else{
