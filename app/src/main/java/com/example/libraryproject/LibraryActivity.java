@@ -24,15 +24,14 @@ import java.sql.SQLException;
 import businesslayer.TransactLayer;
 
 public class LibraryActivity extends AppCompatActivity {
+    //To bind the fragments--basically view binding
+    ActivityLibraryBinding binding;
 
-ActivityLibraryBinding binding;
-//To bind the fragments
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding =ActivityLibraryBinding.inflate(getLayoutInflater());
-        //Binding the fragments to the frame layout
-
+        //Returns the outermost View in the layout file associated with the Binding.
         setContentView(binding.getRoot());
         replaceFragment(new TransactFragment());
         binding.bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -40,102 +39,90 @@ ActivityLibraryBinding binding;
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch(item.getItemId()){
                     case R.id.Transact:
-
                         replaceFragment(new TransactFragment());
                         break;
                     case R.id.History:replaceFragment(new HistoryFragment());
                         break;
                     case R.id.Profile:replaceFragment(new ProfileFragment());
                         break;
-
                 }
-
                 return true;
-
             }
         });
-
-
+        toLibrary();
+    }
+    //intent from transact activity
+    public void toLibrary(){
         Intent iFromTransact =getIntent();
         if(getIntent()!=null && iFromTransact.getStringExtra("TAG")!=null){
-if(iFromTransact.getStringExtra("TAG").equals("Issue")){
-            String studentName =iFromTransact.getStringExtra("studentName");
-            String bookName = iFromTransact.getStringExtra("bookName");
-            String USN = iFromTransact.getStringExtra("USN");
-    String bookId = iFromTransact.getStringExtra("BookId");
-
-
+            //intent from issue
+            if(iFromTransact.getStringExtra("TAG").equals("Issue")){
+                String studentName =iFromTransact.getStringExtra("studentName");
+                String bookName = iFromTransact.getStringExtra("bookName");
+                String USN = iFromTransact.getStringExtra("USN");
+                String bookId = iFromTransact.getStringExtra("BookId");
+                //AlertDialog to confirm issue
                 AlertDialog.Builder ad = new AlertDialog.Builder(LibraryActivity.this);
                 ad.setTitle("Confirm Issue?\n");
                 ad.setCancelable(false);
                 ad.setMessage("Book: " + bookName + "\nStudent: "+ studentName+"\nUSN: "+USN);
-              ad.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-                  @Override
-                  public void onClick(DialogInterface dialogInterface, int i) {
-                      try {
-                          ResultSet set= TransactLayer.issueBookConfirm(USN,bookId,LoginActivity.StaffId);
-                      } catch (SQLException e) {
-                          e.printStackTrace();
-                      }
-                      dialogInterface.cancel();
-                      Toast.makeText(LibraryActivity.this, "Issue successful", Toast.LENGTH_SHORT).show();
-                  }
-              });
-              ad.setNegativeButton("NO", new DialogInterface.OnClickListener() {
-                  @Override
-                  public void onClick(DialogInterface dialogInterface, int i) {
-                      dialogInterface.cancel();
-                      Toast.makeText(LibraryActivity.this, "Book not issued", Toast.LENGTH_SHORT).show();
-                  }
-              });
-
+                ad.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        try {
+                            ResultSet set= TransactLayer.issueBookConfirm(USN,bookId,LoginActivity.StaffId);
+                            }catch (SQLException e) {
+                            e.printStackTrace();
+                            }
+                        dialogInterface.cancel();
+                        Toast.makeText(LibraryActivity.this, "Issue successful", Toast.LENGTH_SHORT).show();
+                        }
+                        });
+                ad.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                        Toast.makeText(LibraryActivity.this, "Book not issued", Toast.LENGTH_SHORT).show();
+                        }
+                        });
+                AlertDialog d=ad.create();
+                d.show();
+                }
+            //intent from Collect
+            else  if(iFromTransact.getStringExtra("TAG").equals("Collect")){
+                String studentName =iFromTransact.getStringExtra("studentName");
+                String bookName = iFromTransact.getStringExtra("bookName");
+                String USN = iFromTransact.getStringExtra("USN");
+                String bookId = iFromTransact.getStringExtra("BookId");
+                //AlertDialog to confirm return
+                AlertDialog.Builder ad = new AlertDialog.Builder(LibraryActivity.this);
+                ad.setTitle("Confirm return?\n");
+                ad.setCancelable(false);
+                ad.setMessage("Book: " + bookName + "\nStudent: " + studentName+"\nUSN: "+USN);
+                ad.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        try {
+                            ResultSet set= TransactLayer.collectBookConfirm(USN,bookId,LoginActivity.StaffId);
+                            } catch (SQLException e) {
+                            e.printStackTrace();
+                            }
+                        dialogInterface.cancel();
+                        Toast.makeText(LibraryActivity.this, "Collected Successfully", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                ad.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                        Toast.makeText(LibraryActivity.this, "Book not Collected", Toast.LENGTH_SHORT).show();
+                    }
+                });
                 AlertDialog d=ad.create();
                 d.show();
             }
-          else  if(iFromTransact.getStringExtra("TAG").equals("Collect")){
-
-    String studentName =iFromTransact.getStringExtra("studentName");
-    String bookName = iFromTransact.getStringExtra("bookName");
-    String USN = iFromTransact.getStringExtra("USN");
-    String bookId = iFromTransact.getStringExtra("BookId");
-
-
-
-    AlertDialog.Builder ad = new AlertDialog.Builder(LibraryActivity.this);
-    ad.setTitle("Confirm return?\n");
-    ad.setCancelable(false);
-    ad.setMessage("Book: " + bookName + "\nStudent: " + studentName+"\nUSN: "+USN);
-    ad.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-        @Override
-        public void onClick(DialogInterface dialogInterface, int i) {
-            try {
-                ResultSet set= TransactLayer.collectBookConfirm(USN,bookId,LoginActivity.StaffId);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            dialogInterface.cancel();
-            Toast.makeText(LibraryActivity.this, "Collected Successfully", Toast.LENGTH_SHORT).show();
         }
-    });
-    ad.setNegativeButton("NO", new DialogInterface.OnClickListener() {
-        @Override
-        public void onClick(DialogInterface dialogInterface, int i) {
-            dialogInterface.cancel();
-            Toast.makeText(LibraryActivity.this, "Book not Collected", Toast.LENGTH_SHORT).show();
-        }
-    });
-
-    AlertDialog d=ad.create();
-    d.show();
-}
-
-
-
-
-        }
-
-
-}
+    }
     //method that will replace frame layout with fragments
     private void replaceFragment(Fragment fragment){
         FragmentManager fragmentManager=getSupportFragmentManager();
@@ -143,6 +130,4 @@ if(iFromTransact.getStringExtra("TAG").equals("Issue")){
         fragmentTransaction.replace(R.id.frame_layout,fragment);
         fragmentTransaction.commit();
     }
-
-
 }
