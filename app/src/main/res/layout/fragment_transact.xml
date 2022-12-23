@@ -13,9 +13,10 @@
 
     <Button
         android:id="@+id/bScan"
-        android:layout_width="169dp"
-        android:layout_height="73dp"
-        android:text="SCAN"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btnstyle"
+        android:text="Scan"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,50 +24,61 @@
         app:layout_constraintVertical_bias="0.81" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        app:cardBackgroundColor="@color/cardview_light_background"
-
-        app:cardCornerRadius="20dp"
-        app:cardElevation="20dp"
-        app:cardMaxElevation="12dp"
-        app:cardPreventCornerOverlap="true"
-        app:cardUseCompatPadding="true"
+        android:id="@+id/cardGreet"
+        android:layout_width="380dp"
+        android:layout_height="172dp"
+        android:measureAllChildren="true"
+        app:cardCornerRadius="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.551"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.405">
+        app:layout_constraintVertical_bias="0.525">
 
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            tools:context=".LibraryActivity">
 
             <TextView
                 android:id="@+id/cardTxtWelcome"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center" />
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="some text"
+                android:textSize="30sp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="0dp" />
 
             <TextView
                 android:id="@+id/cardTxtDate"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="36dp"
+                android:text="date text"
+                android:textSize="25sp"
+                android:layout_alignParentStart="true"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="-2dp"
                 android:gravity="center" />
 
             <TextView
                 android:id="@+id/cardTxtQuote"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:layout_height="52dp"
+                android:text="Quote text"
+                android:textSize="20sp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="0dp"
+                android:gravity="center" />
 
-
-        </LinearLayout>
+        </RelativeLayout>
 
 
     </androidx.cardview.widget.CardView>
@@ -75,7 +87,8 @@
         android:id="@+id/iv"
         android:layout_width="match_parent"
         android:layout_height="77dp"
-        app:layout_constraintBottom_toTopOf="@+id/cardView2"
+        app:layout_constraintBottom_toTopOf="@+id/cardGreet"
+        android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

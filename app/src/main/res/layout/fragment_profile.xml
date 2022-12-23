@@ -168,6 +168,8 @@
         android:id="@+id/p_submit"
         android:layout_width="110dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/btnstyle"
+        android:textColor="@color/black"
         android:text="Confirm"
         android:layout_gravity="center"
        />

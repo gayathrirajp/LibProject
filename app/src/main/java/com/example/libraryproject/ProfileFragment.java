@@ -50,7 +50,7 @@ public class ProfileFragment extends Fragment {
         try {
             ResultSet set= businesslayer.StaffProfileLayer.staffDetails(LoginActivity.StaffId);
             set.next();
-            t_staffId.setText("NM20LIB001");
+            t_staffId.setText(LoginActivity.StaffId);
             t_staffName.setText(set.getString(1));
             t_staffPhone.setText(set.getString(2));
             t_staffDOB.setText(set.getString(3));
@@ -77,7 +77,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 try {
-                    ResultSet set=businesslayer.StaffProfileLayer.staffChangePassword("NM20LIB001", staffPass.getText().toString());
+                    ResultSet set=businesslayer.StaffProfileLayer.staffChangePassword(LoginActivity.StaffId, staffPass.getText().toString());
                     set.next();
                     if(set.getString(1).equals("SUCCESS")){
                         staffPass.setVisibility(view.GONE);

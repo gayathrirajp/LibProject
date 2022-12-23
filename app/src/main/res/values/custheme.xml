@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="CustomTheme" parent="Theme.LibraryProject">
+
+        <item name="colorPrimary">#3ddc84</item>
+        <item name="colorPrimaryVariant">#38cc84</item>
+        <item name="colorOnPrimary">#4C6468</item>
+        <item name="android:fontFamily">@font/segoestaticstatic</item>
+        <item name="android:textSize">15sp</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">#38cc84</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">#4C6468</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">#38cc84</item>
+    </style>
+</resources>

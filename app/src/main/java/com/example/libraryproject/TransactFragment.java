@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 
 public class TransactFragment extends Fragment {
@@ -30,8 +32,16 @@ public class TransactFragment extends Fragment {
        Date d=new Date();
        CharSequence s= DateFormat.format("MMMM d, yyyy ", d.getTime());
        tDate.setText(s.toString());
-       tWelcome.setText("Welcome to the app");
-       tQuote.setText("Some quote");
+        try {
+            ResultSet set= businesslayer.StaffProfileLayer.staffDetails(LoginActivity.StaffId);
+            set.next();
+            tWelcome.setText("Welcome, "+ set.getString(1));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+       tQuote.setText("Have a great day!");
        //Button to scan Student QR
        bScan.setOnClickListener(new View.OnClickListener() {
            @Override
