@@ -1,4 +1,4 @@
-package com.example.libraryproject;
+package adapterlayer;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,11 +9,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.libraryproject.R;
+
 import java.util.ArrayList;
 
 public class BookAdapter extends RecyclerView.Adapter<BookAdapter.MyViewHolder1> {
     private Context context;
-    private ArrayList bookName, issuedOn, issuedBy;
+    ArrayList bookName, issuedOn, issuedBy;
 
     public BookAdapter(Context context, ArrayList bookName, ArrayList issuedOn, ArrayList issuedBy) {
         this.context = context;
@@ -52,8 +54,6 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.MyViewHolder1>
 
     public class MyViewHolder1 extends RecyclerView.ViewHolder {
         TextView tv_bookName, tv_issuedOn, tv_issuedBy;
-
-
         public MyViewHolder1(@NonNull View itemView) {
             super(itemView);
             tv_bookName = itemView.findViewById(R.id.tv_bookName);

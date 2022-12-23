@@ -13,26 +13,20 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class TransactLayer {
-    private static Context context;
-    public TransactLayer(Context context){
-        this.context=context;
-    }
-   static ConSql c=new ConSql();
+    static ConSql c=new ConSql();
     static Connection connection=c.conClass();
     public static ResultSet studentInfo(String usn){
         if(connection!=null){
-        try{
-            String getStudentInfo="select USN, nAME, batch, branchid from student where usn='"+usn+"'";
-
-            Statement smt=connection.createStatement();
-            ResultSet set=smt.executeQuery(getStudentInfo);
-            return set;
-        } catch (SQLException e) {
-            Log.e("error",e.getMessage());
-        }}
+            try{
+                String getStudentInfo="select USN, nAME, batch, branchid from student where usn='"+usn+"'";
+                Statement smt=connection.createStatement();
+                ResultSet set=smt.executeQuery(getStudentInfo);
+                return set;
+            } catch (SQLException e) {
+                Log.e("error",e.getMessage());
+            }
+        }
         else{
-            Toast.makeText(context, "NOT CONNECTED TO NETWORK", Toast.LENGTH_SHORT).show();
-
         }
         return null;
     }
@@ -47,11 +41,9 @@ public class TransactLayer {
             ps.setString(2,bookId);
             ResultSet rs=ps.executeQuery();
             return rs;
-
         }
         else
         {
-            //toast
         }
         return null;
     }
@@ -66,14 +58,13 @@ public class TransactLayer {
             ps.setString(3,staffId);
             ResultSet rs=ps.executeQuery();
             return rs;
-
         }
         else
         {
-            //toast
         }
         return null;
     }
+
     public static ResultSet collectBookDetails(String usn,String bookId) throws SQLException {
         if(connection!=null){
             String issueBook="exec spcollectBookDetails ?, ?";
@@ -84,14 +75,12 @@ public class TransactLayer {
             ps.setString(1,bookId);
             ResultSet rs=ps.executeQuery();
             return rs;
-
         }
-        else
-        {
-            //toast
+        else{
         }
         return null;
     }
+
     public static ResultSet collectBookConfirm(String usn,String bookId,String staffId) throws SQLException {
         if(connection!=null){
             String issueBook="exec spcollectBookConfirm ?, ?,?";
@@ -103,11 +92,9 @@ public class TransactLayer {
             ps.setString(3,staffId);
             ResultSet rs=ps.executeQuery();
             return rs;
-
         }
         else
         {
-            //toast
         }
         return null;
     }
@@ -120,14 +107,10 @@ public class TransactLayer {
             ps.setString(1,usn);
             ResultSet rs=ps.executeQuery();
             return rs;
-
         }
         else
         {
-            //toast
         }
         return null;
     }
-
-
 }
