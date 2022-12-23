@@ -1,57 +1,49 @@
 package com.example.libraryproject;
 
-import androidx.appcompat.app.AppCompatActivity;
+import static com.example.libraryproject.StudentActivity.StudentUsn;
+
+import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import businesslayer.HistoryAdapter;
+import adapterlayer.HistoryAdapter;
 import businesslayer.StudentLayer;
 
-public class HistoryActivity extends AppCompatActivity {
-
+public class StudentHistoryFragment extends Fragment {
     TableLayout tbl;
-    String StudentUsn;
     RecyclerView recyclerView;
     ArrayList<String> bookName,issuedOn, returnedOn, dueDate;
     HistoryAdapter adapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_history);
-
-        //Referencing TableLayout
-        //tbl=findViewById(R.id.tblHistory);
-
-        //Calling method to display Student's transaction history
-        //setTableContents();
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view=inflater.inflate(R.layout.fragment_student_history, container, false);
         bookName= new ArrayList<String>();
         issuedOn= new ArrayList<String>();
         returnedOn= new ArrayList<String>();
         dueDate= new ArrayList<String>();
-        recyclerView= findViewById(R.id.recyclerHistory);
-        adapter = new HistoryAdapter(HistoryActivity.this, bookName , issuedOn, returnedOn, dueDate);
+        recyclerView= view.findViewById(R.id.recyclerHistory1);
+        adapter = new HistoryAdapter(getActivity(), bookName , issuedOn, returnedOn, dueDate);
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         displayData();
+        return view;
     }
 
-    //Method to extract transaction history of a student and setting it on the TableLayout
     void displayData(){
-        Intent i1=getIntent();
-        StudentUsn=i1.getStringExtra("usn");
         ResultSet s= StudentLayer.getHistory(StudentUsn);
         if(s!=null){
             try{
@@ -64,7 +56,7 @@ public class HistoryActivity extends AppCompatActivity {
 
             }
             catch(Exception e){
-                Toast.makeText(HistoryActivity.this, "Error occured", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "Error occured", Toast.LENGTH_LONG).show();
             }
 
         }

@@ -15,83 +15,32 @@ import android.widget.TextView;
 
 import java.util.Date;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link TransactFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class TransactFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public TransactFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment TransactFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static TransactFragment newInstance(String param1, String param2) {
-        TransactFragment fragment = new TransactFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
        View view= inflater.inflate(R.layout.fragment_transact, container, false);
        Button bScan=view.findViewById(R.id.bScan);
-        ImageView iv=view.findViewById(R.id.iv);
-        iv.setImageResource(R.drawable.nitte_logo);
-        TextView tWelcome=view.findViewById(R.id.cardTxtWelcome),
-              tDate=view.findViewById(R.id.cardTxtDate),
-               tQuote=view.findViewById(R.id.cardTxtQuote);
-        Date d=new Date();
-        CharSequence s= DateFormat.format("MMMM d, yyyy ", d.getTime());
-        tDate.setText(s.toString());
-        tWelcome.setText("Welcome to the app");
-        tQuote.setText("Some quote");
-
-
+       ImageView iv=view.findViewById(R.id.iv);
+       iv.setImageResource(R.drawable.nitte_logo);
+       TextView tWelcome=view.findViewById(R.id.cardTxtWelcome);
+       TextView tDate=view.findViewById(R.id.cardTxtDate);
+       TextView tQuote=view.findViewById(R.id.cardTxtQuote);
+       Date d=new Date();
+       CharSequence s= DateFormat.format("MMMM d, yyyy ", d.getTime());
+       tDate.setText(s.toString());
+       tWelcome.setText("Welcome to the app");
+       tQuote.setText("Some quote");
+       //Button to scan Student QR
        bScan.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
                Intent i = new Intent(getActivity(), TransactActivity.class);
                //getActivity--return the context of activity the fragment is currently associated with
                startActivity(i);
-
-
-           }});
-
-
-    return view;}
-
-
+               }
+       });
+       return view;
+    }
 }

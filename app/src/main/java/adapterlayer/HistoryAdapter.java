@@ -1,4 +1,4 @@
-package businesslayer;
+package adapterlayer;
 
 import android.content.Context;
 import android.view.LayoutInflater;

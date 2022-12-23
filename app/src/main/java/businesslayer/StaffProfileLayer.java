@@ -15,7 +15,6 @@ public class StaffProfileLayer {
             ps.setEscapeProcessing(true);
             ps.setQueryTimeout(100);
             ps.setString(1,staffId);
-
             ResultSet rs=ps.executeQuery();
             return rs;}
         else
@@ -23,6 +22,7 @@ public class StaffProfileLayer {
         }
         return null;
     }
+
     public static ResultSet staffChangePassword(String staffId,String staffPassword) throws SQLException {
         if(connection!=null){
             String issueBook="exec spStaffChangePassword ?,?";
@@ -31,12 +31,8 @@ public class StaffProfileLayer {
             ps.setQueryTimeout(100);
             ps.setString(1,staffId);
             ps.setString(2,staffPassword);
-
-
-ResultSet rs=            ps.executeQuery();
+            ResultSet rs=ps.executeQuery();
             return rs;
-
-
         }
         else
         { //toast

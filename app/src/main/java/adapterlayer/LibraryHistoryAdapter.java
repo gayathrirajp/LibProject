@@ -1,4 +1,4 @@
-package com.example.libraryproject;
+package adapterlayer;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,13 +9,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.libraryproject.R;
+
 import java.util.ArrayList;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
+public class LibraryHistoryAdapter extends RecyclerView.Adapter<LibraryHistoryAdapter.MyViewHolder> {
     private Context context;
     ArrayList usn,name,bookname,staffname;
 
-    public MyAdapter(Context context,ArrayList usn,ArrayList name,ArrayList bookname,ArrayList staffname) {
+    public LibraryHistoryAdapter(Context context, ArrayList usn, ArrayList name, ArrayList bookname, ArrayList staffname) {
         this.context = context;
         this.usn=usn;
         this.name=name;
@@ -32,10 +34,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyAdapter.MyViewHolder holder, int position) {
-        //assigning values to the views we  created in the recycler view layout(history_entries)
+    public void onBindViewHolder(@NonNull LibraryHistoryAdapter.MyViewHolder holder, int position) {
+        //assigning values to the views we created in the recycler view layout(history_entries)
         //based on the position of recycler view
-  holder.tv_USN.setText(String.valueOf(usn.get(position)));
+        holder.tv_USN.setText(String.valueOf(usn.get(position)));
         holder.tv_Name.setText(String.valueOf(name.get(position)));
         holder.tv_Book.setText(String.valueOf(bookname.get(position)));
         holder.tv_Staff.setText(String.valueOf(staffname.get(position)));
@@ -43,7 +45,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public int getItemCount() {
-
         //number of items in total
         return name.size();
     }

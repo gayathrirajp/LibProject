@@ -23,29 +23,28 @@ import adapterlayer.FindBookAdapter;
 import businesslayer.StudentLayer;
 
 
-public class FindBookFragment extends Fragment {
+public class SearchBookFragment extends Fragment {
+
     ListView listBranches;
     ArrayAdapter<String> adp;
     ArrayList<String> arr, bookName, author, copiesAvailable;
     //TableLayout tbl;
     FindBookAdapter adapter;
     RecyclerView recyclerView;
-    @Override
 
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_find_book, container, false);
-
-        listBranches=view.findViewById(R.id.listBranchNames);
+        View view=inflater.inflate(R.layout.fragment_search_book, container, false);
+        listBranches=view.findViewById(R.id.listBranches);
         //tbl= findViewById(R.id.tblBooks);
 
         String str="AIML CSE ISE EC EEE MECH BT MCA";
         arr= new ArrayList<String>(Arrays.asList(str.split(" ")));
 
-        adp=new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, arr);
+        adp=new ArrayAdapter<String>(getActivity(), android.R.layout.select_dialog_item, arr);
         listBranches.setAdapter(adp);
-
         listBranches.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -56,7 +55,7 @@ public class FindBookFragment extends Fragment {
                 bookName= new ArrayList<String>();
                 author= new ArrayList<String>();
                 copiesAvailable= new ArrayList<String>();
-                recyclerView= getView().findViewById(R.id.recyclerView);
+                recyclerView= view.findViewById(R.id.recyclerView);
                 adapter = new FindBookAdapter(getActivity(), bookName , author, copiesAvailable);
                 recyclerView.setAdapter(adapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -81,33 +80,4 @@ public class FindBookFragment extends Fragment {
             }
         }
     }
-
-    /*void getBooks(String branchId){
-        ResultSet s= StudentLayer.getBooksOfBranch(branchId);
-        if(s != null){
-            try {
-                while(s.next()){
-                    Log.i("someTag:  ", s.getString(2));
-                    TableRow tr= new TableRow(this);
-                    TextView bookName=new TextView(this);
-                    TextView Author=new TextView(this);
-                    TextView copiesAvailable=new TextView(this);
-                    *//*TextView due=new TextView(this);TextView retTo=new TextView(this);
-                    TextView retOn=new TextView(this);*//*
-                    bookName.setText(s.getString(1)); Author.setText(s.getString(2));
-                    copiesAvailable.setText(s.getString(3));
-                    *//*due.setText(s.getString(5)); retTo.setText(s.getString(6));
-                    retOn.setText(s.getString(7));*//*
-                    tr.addView(bookName); tr.addView(Author);
-                    tr.addView(copiesAvailable);
-                    *//*tr.addView(due); tr.addView(retTo);
-                    tr.addView(retOn);*//*
-                    //tbl.addView(tr);
-                }
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }*/
 }

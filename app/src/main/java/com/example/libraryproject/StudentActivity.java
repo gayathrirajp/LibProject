@@ -1,5 +1,6 @@
 package com.example.libraryproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -9,44 +10,41 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.libraryproject.databinding.ActivityMainBinding;
+import com.example.libraryproject.databinding.ActivityStudentBinding;
+import com.example.libraryproject.databinding.ActivityStudentBinding;
 import com.google.android.material.navigation.NavigationBarView;
 
-public class MainActivity extends AppCompatActivity {
-
-    ActivityMainBinding binding;
+public class StudentActivity extends AppCompatActivity {
+    public static String StudentUsn;
+    ActivityStudentBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        binding= ActivityMainBinding.inflate(getLayoutInflater());
+
+        binding= ActivityStudentBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         replaceFragment(new HomeFragment());
+
+        Intent i=getIntent();
+        StudentUsn=i.getStringExtra("key");
+
 
         binding.bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if (item.getItemId()==R.id.menuFindBook){
-                    replaceFragment(new FindBookFragment());
-                }
-                else if (item.getItemId()==R.id.menuHome){
-                    replaceFragment(new HomeFragment());
-                }
-                else if (item.getItemId()==R.id.menuHistory){
 
-                }
-                /*switch(item.getItemId()){
+                switch(item.getItemId()){
                     case R.id.menuHome:
                         replaceFragment(new HomeFragment());
                         break;
-                    case R.id.btnHistory:
-                        replaceFragment(new HistoryFragment());
+                    case R.id.menuHistory:
+                        replaceFragment(new StudentHistoryFragment());
                         break;
-                    case R.id.btnFindBook:
+                    case R.id.menuFindBook:
                         replaceFragment(new FindBookFragment());
                         break;
-                }*/
+                }
                 return true;
                 //return false;
             }
