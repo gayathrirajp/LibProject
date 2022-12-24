@@ -27,6 +27,7 @@ public class SearchBookFragment extends Fragment {
 
     ListView listBranches;
     ArrayAdapter<String> adp;
+    TextView txtBranch;
     ArrayList<String> arr, bookName, author, copiesAvailable;
     //TableLayout tbl;
     FindBookAdapter adapter;
@@ -38,6 +39,8 @@ public class SearchBookFragment extends Fragment {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_search_book, container, false);
         listBranches=view.findViewById(R.id.listBranches);
+        txtBranch=view.findViewById(R.id.txtBranchTitle);
+        txtBranch.setText("Choose branch");
         //tbl= findViewById(R.id.tblBooks);
 
         String str="AIML CSE ISE EC EEE MECH BT MCA";
@@ -55,7 +58,7 @@ public class SearchBookFragment extends Fragment {
                 bookName= new ArrayList<String>();
                 author= new ArrayList<String>();
                 copiesAvailable= new ArrayList<String>();
-                recyclerView= view.findViewById(R.id.recyclerView);
+                recyclerView= getView().findViewById(R.id.recyclerView);
                 adapter = new FindBookAdapter(getActivity(), bookName , author, copiesAvailable);
                 recyclerView.setAdapter(adapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -67,6 +70,7 @@ public class SearchBookFragment extends Fragment {
     }
 
     void displayData(String info){
+        txtBranch.setText(info);
         ResultSet rSet= StudentLayer.getBooksOfBranch(info);
         if(rSet!= null){
             try{

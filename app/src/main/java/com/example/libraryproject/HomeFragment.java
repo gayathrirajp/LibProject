@@ -4,11 +4,18 @@ package com.example.libraryproject;
 import static com.example.libraryproject.StudentActivity.StudentUsn;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -37,6 +44,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        setHasOptionsMenu(true);
         View view=inflater.inflate(R.layout.fragment_home, container, false);
         txtName=view.findViewById(R.id.txtCardName);
         txtUsn=view.findViewById(R.id.txtCardUsn);
@@ -89,5 +97,41 @@ public class HomeFragment extends Fragment {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        //inflate menu
+        inflater.inflate(R.menu.library_logout,menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId()==R.id.libLogout){
+            //Alert Dialog to confirm logout
+            AlertDialog.Builder ad=new AlertDialog.Builder(getActivity());
+            ad.setCancelable(false);
+            ad.setTitle("Alert!");
+            ad.setMessage("Do you want to log out?");
+            ad.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    Intent iLogout=new Intent(getActivity(),LoginActivity.class);
+                    startActivity(iLogout);
+                    getActivity().finish();
+                    dialogInterface.cancel();
+                }
+            });
+            ad.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.cancel();
+                }
+            });
+            AlertDialog a1=ad.create();
+            a1.show();
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

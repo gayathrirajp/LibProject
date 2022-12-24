@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="nightback">#41656E</color>
     <color name="lightback">#A1CDD8</color>
+    <color name="newback">#DDDDDD</color>
 </resources>

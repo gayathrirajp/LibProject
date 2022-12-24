@@ -12,22 +12,28 @@
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="350dp">
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:orientation="vertical"
-        android:background="#FFBB86FC">
+        android:background="#28AA9E">
+
         <androidx.cardview.widget.CardView
             android:layout_width="140dp"
             android:layout_height="140dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="65dp"
             android:foregroundGravity="center_horizontal"
             app:cardCornerRadius="100dp">
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/profile"></ImageView>
+                android:src="@drawable/ic_baseline_person_24"></ImageView>
 
         </androidx.cardview.widget.CardView>
         <TextView
@@ -41,7 +47,7 @@
             android:textStyle="bold"></TextView>
 
 
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
    <androidx.cardview.widget.CardView
        android:layout_width="match_parent"
        android:layout_height="80dp"
@@ -57,7 +63,7 @@
                android:layout_gravity="center"
                android:gravity="center"
               android:id="@+id/p_staffName"
-               android:textColor="#FFBB86FC"
+               android:textColor="#28AA9E"
                android:textSize="29dp"
                android:textStyle="bold">
 
@@ -86,7 +92,7 @@
                android:layout_height="wrap_content"
                android:text="Phone: "
                android:textSize="24dp"
-               android:textColor="#FFBB86FC"
+               android:textColor="#606060"
                style="italic"></TextView>
 
            <TextView
@@ -95,7 +101,7 @@
                android:layout_height="wrap_content"
 
                android:textSize="20dp"
-               android:textColor="@color/black"
+               android:textColor="#28AA9E"
                style="bold"></TextView>
 
 
@@ -111,7 +117,7 @@
                android:layout_height="wrap_content"
                android:text="DOB   : "
                android:textSize="24dp"
-               android:textColor="#FFBB86FC"
+               android:textColor="#606060"
                style="italic"></TextView>
 
            <TextView
@@ -120,7 +126,7 @@
                android:layout_height="wrap_content"
 
                android:textSize="20dp"
-               android:textColor="@color/black"
+               android:textColor="#28AA9E"
                style="bold"></TextView>
 
 
@@ -141,7 +147,7 @@
                android:layout_height="wrap_content"
 
                android:text="Change Password     "
-               android:textColor="#FFBB86FC"
+               android:textColor="#606060"
                android:textSize="24dp"></TextView>
            <ImageButton
                android:id="@+id/p_changePassword"
@@ -169,7 +175,6 @@
         android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:background="@drawable/btnstyle"
-        android:textColor="@color/black"
         android:text="Confirm"
         android:layout_gravity="center"
        />

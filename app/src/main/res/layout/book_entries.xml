@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:text="Book: "
                 android:textSize="20dp"
-                android:textColor="#FFBB86FC"
+                android:textColor="#28AA9E"
                 style="italic"></TextView>
 
             <TextView
@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:text="Issued on: "
                 android:textSize="20dp"
-                android:textColor="#FFBB86FC"
+                android:textColor="#28AA9E"
                 style="italic"></TextView>
 
             <TextView
@@ -73,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:text="Issued by: "
                 android:textSize="20dp"
-                android:textColor="#FFBB86FC"
+                android:textColor="#28AA9E"
                 style="italic"></TextView>
 
             <TextView

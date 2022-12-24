@@ -42,7 +42,7 @@ public class StudentActivity extends AppCompatActivity {
                         replaceFragment(new StudentHistoryFragment());
                         break;
                     case R.id.menuFindBook:
-                        replaceFragment(new FindBookFragment());
+                        replaceFragment(new SearchBookFragment());
                         break;
                 }
                 return true;

@@ -13,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,14 +22,17 @@ import java.util.ArrayList;
 import adapterlayer.LibraryHistoryAdapter;
 
 public class HistoryFragment extends Fragment {
-
+    TextView cardTxtHistoryBook;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view =inflater.inflate(R.layout.fragment_history, container, false);
         //enable option menu for this fragment
         setHasOptionsMenu(true);
+       cardTxtHistoryBook=view.findViewById(R.id.c1);
+        cardTxtHistoryBook.setText("View history of:");
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_history, container, false);
+        return view;
     }
 
     @Override
@@ -43,6 +47,8 @@ public class HistoryFragment extends Fragment {
         RecyclerView recyclerView;
         ArrayList<String> usn,name,bookname,staffname;
         LibraryHistoryAdapter adapter;
+
+
         usn=new ArrayList<>();
         name=new ArrayList<>();
         bookname=new ArrayList<>();
@@ -58,6 +64,7 @@ public class HistoryFragment extends Fragment {
         //for issue history
         if(id==R.id.iIssue_td){
             try {
+                cardTxtHistoryBook.setText("Issued today:");
                  set= businesslayer.HistoryLayer.issueHistory();
                  while(set.next()){
                      usn.add(set.getString(1));
@@ -72,6 +79,7 @@ public class HistoryFragment extends Fragment {
         //for return history
         if(id==R.id.iReturn_td){
             try {
+                cardTxtHistoryBook.setText("Returned today:");
                 set= businesslayer.HistoryLayer.returnHistory();
                 while(set.next()){
                     usn.add(set.getString(1));
@@ -86,6 +94,7 @@ public class HistoryFragment extends Fragment {
         //for due history
         if(id==R.id.iDue_td){
             try {
+                cardTxtHistoryBook.setText("Due today:");
                 set= businesslayer.HistoryLayer.dueHistory();
                 while(set.next()){
                     usn.add(set.getString(1));
@@ -99,4 +108,5 @@ public class HistoryFragment extends Fragment {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

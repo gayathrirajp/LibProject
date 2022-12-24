@@ -12,6 +12,7 @@
         android:layout_height="255dp"
         android:measureAllChildren="true"
         app:cardCornerRadius="16dp"
+        android:colorBackground="#DDDDDD"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.551"
@@ -21,12 +22,14 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="#626A68">
 
             <TextView
                 android:id="@+id/txtCardPhone"
                 android:layout_width="129dp"
                 android:layout_height="44dp"
+                android:textColor="#ccd0cf"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
@@ -41,20 +44,22 @@
                 android:id="@+id/txtCardName"
                 android:layout_width="wrap_content"
                 android:layout_height="45dp"
+                android:textColor="#ccd0cf"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginStart="221dp"
-                android:layout_marginTop="66dp"
-                android:layout_marginEnd="6dp"
-                android:layout_marginBottom="144dp"
+                android:layout_marginStart="218dp"
+                android:layout_marginTop="67dp"
+                android:layout_marginEnd="9dp"
+                android:layout_marginBottom="143dp"
                 android:text="Name goes here" />
 
             <TextView
                 android:id="@+id/txtCardBatch"
                 android:layout_width="125dp"
-                android:layout_height="48dp"
+                android:layout_height="39dp"
+                android:textColor="#ccd0cf"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
@@ -62,27 +67,29 @@
                 android:layout_marginStart="221dp"
                 android:layout_marginTop="130dp"
                 android:layout_marginEnd="36dp"
-                android:layout_marginBottom="77dp"
+                android:layout_marginBottom="86dp"
                 android:text="Name goes here" />
 
             <TextView
                 android:id="@+id/txtCardBranch"
                 android:layout_width="124dp"
+                android:textColor="#ccd0cf"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="35dp"
-                android:layout_marginTop="131dp"
+                android:layout_marginTop="122dp"
                 android:layout_marginEnd="223dp"
-                android:layout_marginBottom="62dp"
+                android:layout_marginBottom="71dp"
                 android:text="Name goes here" />
 
             <TextView
                 android:id="@+id/txtCardUsn"
                 android:layout_width="123dp"
                 android:layout_height="39dp"
+                android:textColor="#ccd0cf"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
@@ -97,22 +104,23 @@
                 android:id="@+id/txtCardTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="#ccd0cf"
                 android:text="  Student Card"
                 android:textAlignment="viewStart"
                 android:textSize="28dp" />
 
             <Button
                 android:id="@+id/btnChangePassword"
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
+                android:layout_width="182dp"
+                android:layout_height="60dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginStart="193dp"
-                android:layout_marginTop="187dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginBottom="14dp"
+                android:layout_marginStart="190dp"
+                android:layout_marginTop="182dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="13dp"
                 android:background="@drawable/btnstyle"
                 android:text="Change password" />
 
@@ -121,14 +129,13 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="175dp"
+        android:layout_height="163dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.706"
+        app:layout_constraintVertical_bias="0.808"
         app:srcCompat="@drawable/ic_launcher_foreground" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

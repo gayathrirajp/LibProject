@@ -1,7 +1,9 @@
 package com.example.libraryproject;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,12 +12,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 
+import businesslayer.ConSql;
 import businesslayer.LoginLayer;
 
 public class LoginActivity extends AppCompatActivity {
@@ -30,6 +34,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        checkNetwork();
 
         //Referencing views
         btnLogin=findViewById(R.id.btnLogin);
@@ -101,5 +107,19 @@ public class LoginActivity extends AppCompatActivity {
                 Log.e("error",e.getMessage());
             }
         }
+    }
+
+    void checkNetwork(){
+        ConSql checkConnection= new ConSql();
+        Connection c= checkConnection.conClass();
+        if(c!=null){
+            return;
+        }
+        AlertDialog.Builder alertNetwork=new AlertDialog.Builder(LoginActivity.this);
+        alertNetwork.setTitle("Check network");
+        alertNetwork.setMessage("Library shelves can only be accessed if you're on the college network.");
+        alertNetwork.setCancelable(false);
+        AlertDialog networkBox= alertNetwork.create();
+        networkBox.show();
     }
 }
