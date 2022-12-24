@@ -35,7 +35,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        checkNetwork();
 
         //Referencing views
         btnLogin=findViewById(R.id.btnLogin);
@@ -77,9 +76,9 @@ public class LoginActivity extends AppCompatActivity {
     void authenticateLogin(){
         String userName=edUname.getText().toString(),
                 passWord=edPasswd.getText().toString();
+        checkNetwork();
         ResultSet set= LoginLayer.verifyLogin(userName, passWord, flag);
         if(set !=null){
-
             try{
                 set.next();
                 StaffId=set.getString(1);
@@ -107,6 +106,7 @@ public class LoginActivity extends AppCompatActivity {
                 Log.e("error",e.getMessage());
             }
         }
+
     }
 
     void checkNetwork(){

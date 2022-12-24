@@ -19,6 +19,7 @@ public class LoginLayer {
         }
         ConSql c= new ConSql();
         con=c.conClass();
+        if(con!=null){
         try{
             PreparedStatement ps = con.prepareStatement(SPsql);
             ps.setEscapeProcessing(true);
@@ -31,7 +32,8 @@ public class LoginLayer {
         }
         catch(Exception e){
             Log.e("Error: ", e.getMessage());
-        }
+
+        }}
 
         return null;
     }
